@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Titles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="cms" template="/layouts/cms.jsp">
+		<put-attribute name="title" value="CMS" />
+		<put-attribute name="header" value="/layouts/header.jsp" />
+		<put-attribute name="navigation"
+			value="/layouts/navigation.jsp" />
+		<put-attribute name="article"
+			value="/layouts/article.jsp" />
+	</definition>
+	<definition name="editProfile" extends="cms">
+		<put-attribute name="title" value="Edit Profile" />
+		<put-attribute name="article"
+			value="/views/editProfile.jsp" />
+	</definition>
+
+	<!-- Add Content page -->
+	<definition name="addContent" extends="cms">
+		<put-attribute name="title" value="Add Content" />
+		<put-attribute name="article"
+			value="/views/addContent.jsp" />
+	</definition>
+
+	<!-- View Content page -->
+	<definition name="viewContent" extends="cms">
+		<put-attribute name="title" value="View Content" />
+		<put-attribute name="article"
+			value="/views/viewContent.jsp" />
+	</definition>
+
+	<!-- Edit Content page -->
+	<definition name="editContent" extends="cms">
+		<put-attribute name="title" value="Edit Content" />
+		<put-attribute name="article"
+			value="/views/editContent.jsp" />
+	</definition>
+	<!-- View Content page -->
+	<definition name="trashBin" extends="cms">
+		<put-attribute name="title" value="My Trash Bin" />
+		<put-attribute name="article"
+			value="/views/trashBin.jsp" />
+	</definition>
+</tiles-definitions>

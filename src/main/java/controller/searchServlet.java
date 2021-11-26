@@ -10,15 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.connectMySql;
+import dao.ConnectMySql;
 import model.beanContent;
-
+import model.Account;
 @WebServlet("/searchServlet")
 public class searchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	connectMySql conn = new connectMySql();
+	ConnectMySql conn = new ConnectMySql();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = 1; //id se dc lay tu session cua phan login
+		int id = Account.userId; //id se dc lay tu session cua phan login
 		String search = request.getParameter("txtsearch");
 		if(search == null) {
 			search = request.getParameter("s");

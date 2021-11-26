@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.connectMySql;
+import dao.ConnectMySql;
 import model.beanContent;
-
+import model.Account;
 @WebServlet("/addContentServlet")
 public class addContentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	connectMySql conn = new connectMySql();
+	ConnectMySql conn = new ConnectMySql();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -26,7 +26,7 @@ public class addContentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		int id=3;
+		int id=Account.userId;
 		
 		LocalDateTime today = LocalDateTime.now();
 

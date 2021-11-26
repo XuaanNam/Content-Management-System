@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.connectMySql;
+import dao.ConnectMySql;
 import model.beanContent;
-
+import model.Account;
 
 @WebServlet("/viewTrashBinServlet")
 public class viewTrashBinServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	connectMySql conn = new connectMySql();
+	ConnectMySql conn = new ConnectMySql();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String sort = request.getParameter("sort");
@@ -32,7 +32,7 @@ public class viewTrashBinServlet extends HttpServlet {
 			sortType = "desc";
 		} 
 		try {
-			int id = 1; //id se dc lay tu session cua phan login
+			int id = Account.userId; //id se dc lay tu session cua phan login
 			
 			List<beanContent> listContent = conn.trashBinContentWithId(id, sort, sortType);
 			if(listContent == null) { 

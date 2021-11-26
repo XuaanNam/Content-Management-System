@@ -323,7 +323,7 @@ table {
 }
 
 .view-title button {
-	background: green;
+	background: rgb(45, 190, 45);
 	color: #FFF;
 	padding: 0 1vw;
 	border: none;
@@ -364,7 +364,7 @@ table {
 	height: 100%;
 	font-size: 2vh;
 	color: #FFF;
-	background: rgb(100, 180, 100);
+	background: rgb(45, 190, 45);
 	box-sizing: border-box;
 	padding: 0.5vh 1vw;
 	border-radius: 15px;
@@ -406,7 +406,7 @@ table {
 	height: 100%;
 	font-weight: 700;
 	color: #FFF;
-	background: rgb(100, 180, 100);
+	background: rgb(45, 190, 45);
 	border-radius: 15px;
 	border: none;
 }
@@ -421,112 +421,149 @@ table {
 	color: black;
 }
 /*=============================================Login==========================================QuocAnh*/
-#login-form {
-	width: 40vw;
-	height: 51vh;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 20vh;
-	font-family: tahoma;
-	border: 2px solid rgb(222, 222, 222);
-	border-radius: 7px;
-	color: rgb(65, 64, 64);
+#login-form{
+    width: 40vw;
+    height: 51vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20vh;
+    font-family: tahoma;
+    border: 2px solid rgb(222, 222, 222);
+    border-radius: 7px;
+    color: rgb(65, 64, 64);
 }
-
-.container {
-	padding: 2.5vh 2.5vw;
+.container{
+    padding: 2.5vh 2.5vw;
 }
-
-.form-title {
-	border-bottom: 2px solid rgb(222, 222, 222);
-	margin: -2.5vh -2.5vw 2.5vh -2.5vw;
-	padding: 1.5vh 0 2vh 2.5vw;
-	background-color: rgb(240, 240, 240);
+.form-title{
+    border-bottom: 2px solid rgb(222, 222, 222);
+    margin: -2.5vh -2.5vw 2.5vh -2.5vw;
+    padding: 1.5vh 0 2vh 2.5vw;
+    background-color: rgb(240, 240, 240) ;
 }
-
-.group {
-	margin-bottom: 3vh;
-	position: relative;
+.group{
+    margin-bottom: 3vh;
+    position: relative;
 }
-
-.textbox {
-	height: 5vh;
-	width: 34.5vw;
-	border: 1.5px solid;
-	border-radius: 7px;
-	font-size: 16px;
-	border-color: rgb(222, 222, 222);
+.textbox{
+    height: 5vh;
+    width: 34.5vw;
+    border: 1.5px solid;
+    border-radius: 7px;
+    font-size: 16px;
+    border-color: rgb(222, 222, 222);
 }
-
-.checkbox {
-	margin-left: 0px;
+.checkbox{
+    margin-left: 0px;
 }
-
-#btn-login {
-	color: white;
-	font-size: 16px;
-	background-color: rgb(100, 180, 100);
-	border: 0px;
-	height: 7vh;
-	width: 35.2vw;
-	border-radius: 7px;
-	padding: 1px 2px 1px 2px;
-	font-weight: bold;
+#btn-login{
+    color: white;
+    font-size: 16px;
+	background-color: rgb(45, 190, 45);
+    border: 0px;
+    height: 7vh;
+    width: 35.2vw;
+    border-radius: 7px;
+    padding: 1px 2px 1px 2px;
+    font-weight: bold;
 }
-
-.mess {
+#btn-login:hover{
+	background-color: rgb(30, 160, 30);
+}
+.mess{
 	height: 3vh;
 	color: red;
 	margin-top: 1vh;
 }
-
 .link {
-	margin-top: 1vh;
+   	margin-top: 1vh;
 }
-
-.link a {
+.link a{
 	color: cornflowerblue;
 }
-
-.group .temp {
-	position: absolute;
-	top: 20%;
-	right: 4%;
-	display: none;
+.group .temp{
+    position: absolute;
+    top: 20%;
+    right: 4%;
+    display: none;
 }
-
-.temp-tick {
-	color: green;
+.temp-tick{
+    color: green;
 }
-
-.temp-error {
-	color: red;
+.temp-error{
+    color: red;
 }
 /*--=====================================register--=========================================>*/
-#register-form {
-	width: 40vw;
-	height: 63vh;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 20vh;
-	font-family: tahoma;
-	border: 2px solid rgb(222, 222, 222);
-	border-radius: 7px;
-	color: rgb(65, 64, 64);
-}
 
-#btn-register {
-	color: white;
-	font-size: 16px;
-	background-color: rgb(100, 180, 100);
-	border: 0px;
-	height: 7vh;
-	width: 35.2vw;
-	border-radius: 7px;
-	padding: 1px 2px 1px 2px;
-	font-weight: bold;
+#register-form{
+    width: 40vw;
+    height: 63vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20vh;
+    font-family: tahoma;
+    border: 2px solid rgb(222, 222, 222);
+    border-radius: 7px;
+    color: rgb(65, 64, 64);
 }
-
+.container{
+    padding: 2.5vh 2.5vw;
+}
+.form-title{
+    border-bottom: 2px solid rgb(222, 222, 222);
+    margin: -2.5vh -2.5vw 2.5vh -2.5vw;
+    padding: 1.5vh 0 2vh 2.5vw;
+    background-color: rgb(240, 240, 240) ;
+}
+.group{
+    margin-bottom: 3vh;
+    position: relative;
+}
+.textbox{
+    height: 5vh;
+    width: 34.5vw;
+    border: 1.5px solid;
+    border-radius: 7px;
+    font-size: 16px;
+    border-color: rgb(222, 222, 222);
+}
+#btn-register{
+    color: white;
+    font-size: 16px;
+	background-color: rgb(45, 190, 45);
+    border: 0px;
+    height: 7vh;
+    width: 35.2vw;
+    border-radius: 7px;
+    padding: 1px 2px 1px 2px;
+    font-weight: bold;
+}
+#btn-register:hover{
+	background-color: rgb(30, 160, 30);
+}
+.mess{
+	height: 3vh;
+	color: red;
+	margin-top: 1vh;
+}
+.link {
+   	margin-top: 1vh;
+}
+.link a{
+	color: cornflowerblue;
+}
+.group .temp{
+    position: absolute;
+    top: 20%;
+    right: 4%;
+    display: none;
+}
+.temp-tick{
+    color: green;
+}
+.temp-error{
+    color: red;
+}
 /*--------------------------------------------------------- Ä�Ã¬nh Ä�áº¡i ---------------------------------------------------------*/
 /*<---------------------------------------------------------ADD CONTENT-------------------------------------------------------->*/
 /*<---------------------------------------------------------EDIT PROFILE--------------------------------------------------------->*/
@@ -626,8 +663,8 @@ table {
     outline: none;
     border-radius: 4px;
     padding: 10px 15px;
-    background-color: rgb(100, 180, 100);
-    color: #000000;
+    background-color: rgb(45, 190, 45);
+    color: rgb(255, 255, 255);
     border: none;
 }
 

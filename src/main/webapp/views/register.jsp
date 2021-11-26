@@ -7,8 +7,7 @@
 <head>
     <meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Register</title> 
-    <script type="text/javascript" src="${pageContext.request.contextPath}/javascript/registervalidate.js"></script>
+    <title>Register</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/templates/MyStyle.css">
 </head>
 <body>
@@ -48,5 +47,6 @@
             </div>
         </div>
     </form>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/javascript/registervalidate.js"></script>
 </body>
 </html>

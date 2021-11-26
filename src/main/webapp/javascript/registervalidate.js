@@ -11,7 +11,6 @@ uname.addEventListener('blur', function(){
         uname.style.border = "1.5px solid red";
         u_error.style.display = 'block';
         u_tick.style.display = 'none';
-        return false;
     }
 })
 var email = document.querySelector('#email');
@@ -19,7 +18,7 @@ email.addEventListener('blur', function(){
     var e_tick = document.querySelector('.e_tick');
     var e_error = document.querySelector('.e_error');
     var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if(regex.test(email.value) && email.value.length >=15){
+    if(regex.test(email.value) && email.value.length >=5){
         email.style.border = "1.5px solid green";
         e_error.style.display = 'none';
         e_tick.style.display = 'block';
@@ -28,7 +27,6 @@ email.addEventListener('blur', function(){
         email.style.border = "1.5px solid red";
         e_error.style.display = 'block';
         e_tick.style.display = 'none';
-        return false;
     }
 })
 
@@ -45,7 +43,6 @@ pass.addEventListener('blur', function(){
         pass.style.border = "1.5px solid red";
         p_error.style.display = 'block';
         p_tick.style.display = 'none';
-        return false;
     }
 })
 
@@ -57,21 +54,37 @@ repass.addEventListener('blur', function(){
         repass.style.border = "1.5px solid green";
         rp_error.style.display = 'none';
         rp_tick.style.display = 'block';
+		
     }
     else{
         repass.style.border = "1.5px solid red";
         rp_error.style.display = 'block';
         rp_tick.style.display = 'none';
-        return false;
     }
 })
 
 function validate(){
-    if(email.value.length == 0 || pass.value.length == 0){
+	console.log(email.value.length);
+	console.log("ok");
+    if(email.value.length == 0 || uname.value.length == 0 || pass.value.length == 0 || repass.value.length == 0){
         document.querySelector('.mess').innerHTML = 'Please fill empty fields';
         return false;
     }
-    else{
-		return true;
-    }
+	else if(uname.value.length < 3){
+        document.querySelector('.mess').innerHTML = 'Username must be at least 3 characters';
+		return false;
+	}
+	else if(email.value.length < 5){
+        document.querySelector('.mess').innerHTML = 'Email must be at least 5 characters';
+		return false;
+	}
+	else if(pass.value.length < 8){
+        document.querySelector('.mess').innerHTML = 'Password must be at least 8 characters';
+		return false;
+	}
+	else if(pass.value != repass.value){
+        document.querySelector('.mess').innerHTML = 'Incorect confirm password';
+		return false;
+	}
+    return true;
 }

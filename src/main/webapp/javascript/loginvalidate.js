@@ -12,7 +12,6 @@ email.addEventListener('blur', function(){
         email.style.border = "1.5px solid red";
         e_error.style.display = 'block';
         e_tick.style.display = 'none';
-        return false;
     }
 })
 
@@ -29,7 +28,6 @@ pass.addEventListener('blur', function(){
         pass.style.border = "1.5px solid red";
         p_error.style.display = 'block';
         p_tick.style.display = 'none';
-        return false;
     }
 })
 

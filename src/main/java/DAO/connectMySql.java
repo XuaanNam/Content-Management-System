@@ -13,7 +13,7 @@ import java.util.List;
 import model.Account;
 import model.beanContent;
 
-public class connectMySql {
+public class ConnectMySql {
 
 	static String url = "jdbc:mysql://localhost:3306/cms";
 	static String user = "root";
@@ -391,47 +391,6 @@ public class connectMySql {
 		}
 		return listContent;
 	}
-
-	public boolean checkLogin(String email, String password) {
-		String query = "select Email,Password from Member where Email='" + email + "'";
-		try {
-			Connection conn = getConnection();
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
-
-			while (rs.next()) {
-				if (email.equals(rs.getString("Email")) && password.equals(rs.getString("Password")))
-					return true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-
-	/*
-	 * public boolean checkRegister(String email, String username){ String query =
-	 * "SELECT COUNT(*) from account where Username=" + username + "or Email=" +
-	 * email + ""; try { Connection conn = getConnection(); Statement stmt =
-	 * conn.createStatement(); ResultSet rs = stmt.executeQuery(query); int n = 2;
-	 * if ( rs.next() ) { n = rs.getInt("COUNT");
-	 * 
-	 * } if ( n > 0 ) { return true; } } catch (Exception e) { e.printStackTrace();
-	 * } return false; }
-	 */
-	public void insertUser(Account acc) {
-		String query = "insert into Member(Username, Email, Password) values (?,?,?)";
-		try {
-			Connection conn = getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, acc.getUsername());
-			pstmt.setString(2, acc.getEmail());
-			pstmt.setString(3, acc.getPassword());
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			System.out.print("insert failed");
-		}
-	}
 	
 	
 	public int getTotal(int id, boolean draft, boolean search, String txtsearch ) {
@@ -484,6 +443,49 @@ public class connectMySql {
         return 0;
     }
 	
-	
+	public boolean checkLogin(String email, String password){
+		String query = "select * from member where Email='" + email + "' and Password='" + password + "'" ;	
+		try {	
+			Connection conn = getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			
+			if(rs.next()) {
+				Account.userId = rs.getInt("id");
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public boolean checkRegister(String email, String username){
+		String query = "SELECT * from member where Username='" + username + "' or Email='" + email + "'";	
+		try {	
+			Connection conn = getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			
+			if(rs.next()) 
+				return true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	public void insertUser(Account acc) {
+		String query = "insert into member(Username, Email, Password) values (?,?,?)";
+		try {
+			Connection conn = getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, acc.getUsername());
+			pstmt.setString(2, acc.getEmail());
+			pstmt.setString(3, acc.getPassword());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.print("insert failed");
+		}
+	}
 
 }

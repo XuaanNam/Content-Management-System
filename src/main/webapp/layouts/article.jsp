@@ -5,4 +5,8 @@
 		location.assign("/CMS/viewContentServlet")
 	}
 	setTimeout('Redirect()', 5000);
+	window.history.forward();
+    function noBack() {
+        window.history.forward();
+    }
 </script>

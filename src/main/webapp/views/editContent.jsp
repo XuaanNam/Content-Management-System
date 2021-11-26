@@ -1,43 +1,76 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+	pageEncoding="utf-8" import="model.beanContent" import="java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
-<section class="section-title">
-	<div>
-		<h1 class="font-helvetica">Edit Content</h1>
+
+
+<!-- Begin Content -->
+<form action="${pageContext.request.contextPath}/updateContentServlet?id=${contentResult.id}"
+	method="POST" class="form" id="form-add">
+	<div class="form-content-section">
+		<p class="form-tittle">Edit Content</p>
 	</div>
-</section>
-<section class="section-list">
-	<div class="view-title">
-		<h3 class="font-helvetica">Edit Content List</h3>
+	<div class="body-content-section">
+		<h3 class="form-heading-name">Form Edit Content</h3>
+
+		<div class="form-container">
+			<div>
+				<div class="form-group">
+					<label for="title-box" class="heading-name">Tittle</label> <input
+						id="title-box" name="title" type="text" value="${contentResult.title}"
+						placeholder="Enter the title" class="input-box-section"> <span
+						class="form-message"></span>
+				</div>
+
+				<div class="form-group">
+					<label for="brief-box" class="heading-name">Brief</label>
+					<textarea name="brief" id="brief-box" cols="115" rows="4"
+						class="input-box-section">${contentResult.brief}</textarea>
+					<span class="form-message"></span>
+				</div>
+
+				<div class="form-group">
+					<label for="content-box" class="heading-name">Content</label>
+					<textarea name="content" id="content-box" cols="115" rows="10"
+						class="input-box-section">${contentResult.content}</textarea>
+					<span class="form-message"></span>
+				</div>
+
+			</div>
+
+			<div class="form-btn">
+
+				<div class="submit-section">
+					<input type="submit" class="btn-section" value="Submit Button">
+				</div>
+
+				<div class="reset-section">
+				<input type="reset" class="btn-section" onClick="resetForm()" value="Reset Button">
+				</div>
+
+			</div>
+		</div>
 	</div>
-	<div class="view-table">
-		<form
-			action="${pageContext.request.contextPath}/updateContentServlet?id=${contentResult.id}"
-			class="form-edit" method="post">
-			<label>Title</label> <br /> <input style="width: 100%; height: 5vh;"
-				type="text" placeholder="Enter the title"
-				value="${contentResult.title}" id="input-title" name="title" /> <br />
-			<br /> <label>Brief</label> <br />
-			
-			
-			<textarea name="brief" id="input-brief" rows="6" cols="150">  
- 					${contentResult.brief}
-				</textarea>
-			<br /> <br /> <label>Content</label> <br />
-			<textarea name="content" id="input-content" style="text-align:left;"  rows="9" cols="150">  
- 					${contentResult.content}
-				</textarea>
-			<br /> <br />
-			<button style="width: 30%; height: 5vh" type="submit">Submit
-				Button</button>
-			<button style="width: 30%; height: 5vh" type="button"  onclick="resetForm()">Reset Button</button>
-		</form>
-	</div>
-</section>
+</form>
+<!-- End Content -->
+
+
+<script
+	src="${pageContext.request.contextPath}/javascript/addeditvalidate.js"
+	type="text/javascript"></script>
 <script>
-	function resetForm(){
-		location.reload ();
-	};
-	
+	Validator({
+		form : '#form-add',
+		errorSelector : ".form-message",
+		rules : [ Validator.checkLength('#title-box', 10, 200),
+				Validator.checkLength('#brief-box', 30, 150),
+				Validator.checkLength('#content-box', 50, 1000), ]
+	});
+</script>
+
+<script>
+	//Reset button
+	function resetForm() {
+		document.getElementById("form-add").reset();
+	}
 </script>

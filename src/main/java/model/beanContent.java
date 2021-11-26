@@ -35,7 +35,14 @@ public class beanContent {
 		this.createdate = createdate;
 	}
 
-
+	public beanContent(String title, String brief, String content, String createdate, int Authorid) {
+        super();
+        this.title = title;
+        this.brief = brief;
+        this.content = content;
+        this.createdate = createdate;
+        this.authorid = Authorid;
+    }
 
 	public int getId() {
 		return id;

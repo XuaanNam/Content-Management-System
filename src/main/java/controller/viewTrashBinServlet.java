@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.connectMySql;
+import dao.connectMySql;
 import model.beanContent;
 
 
@@ -32,7 +32,7 @@ public class viewTrashBinServlet extends HttpServlet {
 			sortType = "desc";
 		} 
 		try {
-			int id = 3; //id se dc lay tu session cua phan login
+			int id = 1; //id se dc lay tu session cua phan login
 			
 			List<beanContent> listContent = conn.trashBinContentWithId(id, sort, sortType);
 			if(listContent == null) { 

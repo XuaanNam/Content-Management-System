@@ -1,4 +1,4 @@
-package DAO;
+package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -52,7 +52,7 @@ public class connectMySql {
 		return role;
 	}
 
-	public List<beanContent> viewContentWithId(int id, String sort, String sortType) {
+	public List<beanContent> viewContentWithId(int id, String sort, String sortType, int page) {
 		String query = "";
 		boolean rl = false;
 		try {
@@ -61,57 +61,61 @@ public class connectMySql {
 			e1.printStackTrace();
 		}
 		switch (sort) {
-		case "Title":
-			if (sortType.equals("asc")) {
-				if (rl) {
-					query = "select  id, Title, Brief, CreateDate from Content where Draft = false order by Title";
-				} else {
-					query = "select id, Title, Brief, CreateDate from Content where Draft = false and AuthorId = ? order by Title";
+			case "Title":
+				if (sortType.equals("asc")) {
+					if (rl) {
+						query = "select  id, Title, Brief, CreateDate from Content where Draft = false order by Title limit ? , 10";
+					} else {
+						query = "select id, Title, Brief, CreateDate from Content where Draft = false and AuthorId = ? order by Title limit ? , 10";
+					}
+				} else if (sortType.equals("desc")) {
+					if (rl) {
+						query = "select  id, Title, Brief, CreateDate from Content where Draft = false order by Title desc limit ? , 10";
+					} else {
+						query = "select id, Title, Brief, CreateDate from Content where Draft = false and AuthorId = ? order by Title desc limit ? , 10";
+					}
 				}
-			} else if (sortType.equals("desc")) {
-				if (rl) {
-					query = "select  id, Title, Brief, CreateDate from Content where Draft = false order by Title desc";
-				} else {
-					query = "select id, Title, Brief, CreateDate from Content where Draft = false and AuthorId = ? order by Title desc";
+				break;
+			case "Brief":
+				if (sortType.equals("asc")) {
+					if (rl) {
+						query = "select  id, Title, Brief, CreateDate from Content where Draft = false order by Brief limit ? , 10";
+					} else {
+						query = "select id, Title, Brief, CreateDate from Content where Draft = false and AuthorId = ? order by Brief limit ? , 10";
+					}
+				} else if (sortType.equals("desc")) {
+					if (rl) {
+						query = "select  id, Title, Brief, CreateDate from Content where Draft = false order by Brief desc limit ? , 10";
+					} else {
+						query = "select id, Title, Brief, CreateDate from Content where Draft = false and AuthorId = ? order by Brief desc limit ? , 10";
+					}
 				}
-			}
-			break;
-		case "Brief":
-			if (sortType.equals("asc")) {
-				if (rl) {
-					query = "select  id, Title, Brief, CreateDate from Content where Draft = false order by Brief";
-				} else {
-					query = "select id, Title, Brief, CreateDate from Content where Draft = false and AuthorId = ? order by Brief";
+				break;
+			case "CreateDate":
+				if (sortType.equals("asc")) {
+					if (rl) {
+						query = "select  id, Title, Brief, CreateDate from Content where Draft = false order by CreateDate limit ? , 10";
+					} else {
+						query = "select id, Title, Brief, CreateDate from Content where Draft = false and AuthorId = ?  order by CreateDate limit ? , 10";
+					}
+				} else if (sortType.equals("desc")) {
+					if (rl) {
+						query = "select  id, Title, Brief, CreateDate from Content where Draft = false order by CreateDate desc limit ? , 10";
+					} else {
+						query = "select id, Title, Brief, CreateDate from Content where Draft = false and AuthorId = ? order by CreateDate desc limit ? , 10";
+					}
 				}
-			} else if (sortType.equals("desc")) {
-				if (rl) {
-					query = "select  id, Title, Brief, CreateDate from Content where Draft = false order by Brief desc";
-				} else {
-					query = "select id, Title, Brief, CreateDate from Content where Draft = false and AuthorId = ? order by Brief desc";
-				}
-			}
-			break;
-		case "CreateDate":
-			if (sortType.equals("asc")) {
-				if (rl) {
-					query = "select  id, Title, Brief, CreateDate from Content where Draft = false order by CreateDate";
-				} else {
-					query = "select id, Title, Brief, CreateDate from Content where Draft = false and AuthorId = ?  order by CreateDate";
-				}
-			} else if (sortType.equals("desc")) {
-				if (rl) {
-					query = "select  id, Title, Brief, CreateDate from Content where Draft = false order by CreateDate desc";
-				} else {
-					query = "select id, Title, Brief, CreateDate from Content where Draft = false and AuthorId = ? order by CreateDate desc";
-				}
-			}
-		default:
+			default:
 
 		}
 		List<beanContent> listContent = new ArrayList<>();
 		try (Connection conn = getConnection(); PreparedStatement pstmt = conn.prepareStatement(query);) {
 			if (rl == false) {
 				pstmt.setInt(1, id);
+				pstmt.setInt(2, page);
+			}
+			else {
+				pstmt.setInt(1, page);
 			}
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -127,8 +131,8 @@ public class connectMySql {
 		}
 		return listContent;
 	}
-
-	public List<beanContent> Search(String txtsearch, int id) {
+	
+	public List<beanContent> Search(String txtsearch, int id, String sort, String sortType, int page) {
 		String query = "";
 		boolean rl = false;
 		try {
@@ -136,19 +140,66 @@ public class connectMySql {
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		if (rl) {
-			query = "select * from Content where (id like ? or Title like ? or Brief like ? or Content like ?) and Draft = false";
-		} else {
-			query = "select * from Content where (id like ? or Title like ? or Brief like ? or Content like ?) and AuthorId = ? and Draft = false";
-		}
+			
+		switch (sort) {
+			case "Title":
+				if (sortType.equals("asc")) {
+					if (rl) {
+						query = "select id, Title, Brief, CreateDate from Content where (id like ? or Title like ? or Brief like ? or Content like ?) and Draft = false  order by Title limit ? , 10";
+					} else {
+						query = "select id, Title, Brief, CreateDate from Content where (id like ? or Title like ? or Brief like ? or Content like ?) and Draft = false and AuthorId = ? order by Title limit ? , 10";
+					}
+				} else if (sortType.equals("desc")) {
+					if (rl) {
+						query = "select  id, Title, Brief, CreateDate from Content where (id like ? or Title like ? or Brief like ? or Content like ?) and Draft = false order by Title desc limit ? , 10";
+					} else {
+						query = "select id, Title, Brief, CreateDate from Content where (id like ? or Title like ? or Brief like ? or Content like ?) and Draft = false and AuthorId = ? order by Title desc limit ? , 10";
+					}
+				}
+				break;
+			case "Brief":
+				if (sortType.equals("asc")) {
+					if (rl) {
+						query = "select  id, Title, Brief, CreateDate from Content where (id like ? or Title like ? or Brief like ? or Content like ?) and Draft = false order by Brief limit ? , 10";
+					} else {
+						query = "select id, Title, Brief, CreateDate from Content where (id like ? or Title like ? or Brief like ? or Content like ?) and Draft = false and AuthorId = ? order by Brief limit ? , 10";
+					}
+				} else if (sortType.equals("desc")) {
+					if (rl) {
+						query = "select  id, Title, Brief, CreateDate from Content where (id like ? or Title like ? or Brief like ? or Content like ?) and Draft = false order by Brief desc limit ? , 10";
+					} else {
+						query = "select id, Title, Brief, CreateDate from Content where (id like ? or Title like ? or Brief like ? or Content like ?) and Draft = false and AuthorId = ? order by Brief desc limit ? , 10";
+					}
+				}
+				break;
+			case "CreateDate":
+				if (sortType.equals("asc")) {
+					if (rl) {
+						query = "select  id, Title, Brief, CreateDate from Content where (id like ? or Title like ? or Brief like ? or Content like ?) and Draft = false order by CreateDate limit ? , 10";
+					} else {
+						query = "select id, Title, Brief, CreateDate from Content where (id like ? or Title like ? or Brief like ? or Content like ?) and Draft = false and AuthorId = ?  order by CreateDate limit ? , 10";
+					} 
+				} else if (sortType.equals("desc")) {
+					if (rl) {
+						query = "select  id, Title, Brief, CreateDate from Content where (id like ? or Title like ? or Brief like ? or Content like ?) and Draft = false order by CreateDate desc limit ? , 10";
+					} else {
+						query = "select id, Title, Brief, CreateDate from Content where (id like ? or Title like ? or Brief like ? or Content like ?) and Draft = false and AuthorId = ? order by CreateDate desc limit ? , 10";
+					}
+				}
+			default:
+
+		}	
+		
 		List<beanContent> listContent = new ArrayList<>();
 		Connection conn = getConnection();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(query);
 			if (rl) {
-				System.out.print("admin!");
-			} else {
+				pstmt.setInt(5, page);
+			}
+			else {
 				pstmt.setInt(5, id);
+				pstmt.setInt(6, page);
 			}
 			pstmt.setString(1, "%" + txtsearch + "%");
 			pstmt.setString(2, "%" + txtsearch + "%");
@@ -167,18 +218,23 @@ public class connectMySql {
 		return listContent;
 	}
 
-	public void addContent(beanContent bCt) {
-		String query = "insert into Content ('Title','Brief','Content','AuthorId') values (?,?,?,?)";
-		try (Connection conn = getConnection(); PreparedStatement pstmt = conn.prepareStatement(query);) {
-			pstmt.setString(1, bCt.getTitle());
-			pstmt.setString(2, bCt.getBrief());
-			pstmt.setString(3, bCt.getContent());
-			pstmt.setInt(4, bCt.getAuthorid());
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			System.out.print("failed to add Content!");
-		}
-	}
+	private static final String INSERT_CONTENT_SQL = "INSERT INTO content (title, brief, content, AuthorId) VALUES (?, ?, ?, ?);";
+	public void insertContent(beanContent bCt) throws SQLException {
+      
+        // try-with-resource statement will auto close the connection.
+        try (Connection conn = getConnection(); 
+            PreparedStatement pstmt = conn.prepareStatement(INSERT_CONTENT_SQL);) {
+            pstmt.setString(1, bCt.getTitle());
+            pstmt.setString(2, bCt.getBrief());
+            pstmt.setString(3, bCt.getContent());
+            pstmt.setInt(4, bCt.getAuthorid());
+       
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+        	System.out.print("add content that bai");
+        }
+    }
+	
 
 	public boolean deleteContent(int id) throws SQLException {
 		boolean deleteContent = false;
@@ -376,5 +432,58 @@ public class connectMySql {
 			System.out.print("insert failed");
 		}
 	}
+	
+	
+	public int getTotal(int id, boolean draft, boolean search, String txtsearch ) {
+		boolean rl = false;
+		String query = "";
+		try {
+			rl = role(id);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		if(search) {
+		
+			if (rl) {
+				query = "select count(*) from Content where Draft = ? and (id like ? or Title like ? or Brief like ? or Content like ?)";
+			} else {
+				query = "select count(*) from Content where Draft = ? and (id like ? or Title like ? or Brief like ? or Content like ?) and AuthorId = ?";
+			}
+		} else {
+			if(rl) {
+				query = "select count(*) from Content where Draft = ?";
+			} else {
+				query = "select count(*) from Content where Draft = ? and AuthorId = ?";
+			}
+		}
+        try (Connection conn = getConnection(); PreparedStatement pstmt = conn.prepareStatement(query);) {
+        	if(search) {
+        		if(!rl) {
+            		pstmt.setInt(6, id);	
+            	}    
+        		pstmt.setBoolean(1, draft);
+	        	pstmt.setString(2, "%" + txtsearch + "%");
+				pstmt.setString(3, "%" + txtsearch + "%");
+				pstmt.setString(4, "%" + txtsearch + "%");
+				pstmt.setString(5, "%" + txtsearch + "%");           
+        	} else {
+        		if(!rl) {
+            		pstmt.setInt(2, id);	
+            	} 
+        		pstmt.setBoolean(1, draft);
+        	}
+        	
+        	ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+
+            System.out.print("get total failed !");
+        }
+        return 0;
+    }
+	
+	
 
 }

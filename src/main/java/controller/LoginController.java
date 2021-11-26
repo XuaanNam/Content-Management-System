@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.connectMySql;
+import dao.connectMySql;
 import model.CookieUnit;
 @WebServlet("/views/login")
 public class LoginController extends HttpServlet {

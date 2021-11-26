@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.connectMySql;
 import model.beanContent;
-import DAO.connectMySql;
 
 @WebServlet({"/viewContentServlet"})
 public class viewContentServlet extends HttpServlet {
@@ -17,6 +17,10 @@ public class viewContentServlet extends HttpServlet {
 	connectMySql conn = new connectMySql();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int id = 1; //id se dc lay tu session cua phan login		
+		
+		
 		
 		String sort = request.getParameter("sort");
 		String sortType = request.getParameter("sortType");
@@ -27,14 +31,32 @@ public class viewContentServlet extends HttpServlet {
 		} 
 		if(sortType == null) {
 			sortType = "desc";
+		} else if(sortType.equals("option")) {
+			
 		} else if((!sortType.equals("asc")) && (!sortType.equals("desc"))) {
 			sortType = "desc";
 		} 
+		
+		
+		int countContent=conn.getTotal(id,false, false, ""); 
+	    int EndPage=countContent/10;
+	    if(countContent%10 != 0) {
+	        EndPage++;
+	    }
+	    
+		String Spage = request.getParameter("page");
+		if( Spage == null) {Spage = "1";}
+		int page = Integer.parseInt(Spage) * 10 - 10;
+		
+		
 		try {
-			int id = 3; //id se dc lay tu session cua phan login		
-			List<beanContent> listContent = conn.viewContentWithId(id, sort, sortType);
+			
+			List<beanContent> listContent = conn.viewContentWithId(id, sort, sortType, page);
 			request.setAttribute("viewResult", listContent);
-
+			request.setAttribute("endP", EndPage);
+			request.setAttribute("sort", sort);
+			request.setAttribute("sortType", sortType);
+			
 			request.getRequestDispatcher("viewContent.tiles").forward(request, response);
 
 		} catch (Exception e) {

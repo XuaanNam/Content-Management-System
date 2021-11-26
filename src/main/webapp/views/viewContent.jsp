@@ -12,9 +12,17 @@
 </section>
 <section class="section-list">
 	<div class="view-title">
-		<h3 class="font-helvetica">View Content List</h3>
-		<form action="${pageContext.request.contextPath}/viewContentServlet?sort=sort" method="get">
+		<h3 class="font-helvetica" style="padding-right: 50px;">View Content List</h3>
+		<div class="flex" style="padding: 90px;"><h4 class="font-helvetica">All content are sorted by: <c:out value="${sort}"></c:out> - <c:out value="${sortType}"></c:out>ending</h4> </div>
+		<% 	String search = String.valueOf(request.getAttribute("search"));
+			if (search == null){%>
+				<form action="${pageContext.request.contextPath}/viewContentServlet" method="post">
+			<%} else { %>
+				<form action="${pageContext.request.contextPath}/searchServlet" method="post">
+			<%} %>
+			<input style ="max-width: 0px; max-height: 0px;" type = "text" name= "s" value="${search}"/>
 			<label>Sort by </label> <select name="sort" id="sort-by">
+				<option selected disabled value = "option">---- Option ----</option>
 				<option value="CreateDate">Created Date</option>
 				<option value="Title">Title</option>
 				<option value="Brief">Brief</option>
@@ -61,40 +69,20 @@
 	</div>
 	<div class="view-page-number">
 		<ul>
-			<li><a href="#">
-					<button>
-						<img src="${pageContext.request.contextPath}/icons/previous.svg"
-							alt="previous">
-					</button>
-			</a></li>
-			<li><a href="#">
-					<button>1</button>
-			</a></li>
-			<li><a href="#">
-					<button>2</button>
-			</a></li>
-			<li><a href="#">
-					<button>3</button>
-			</a></li>
-			<li><a href="#">
-					<button>4</button>
-			</a></li>
-			<li>. . . .</li>
-			<li><a href="#">
-					<button>5</button>
-			</a></li>
-			<li><a href="#">
-					<button>6</button>
-			</a></li>
-			<li><a href="#">
-					<button>7</button>
-			</a></li>
-			<li><a href="#">
-					<button>
-						<img src="${pageContext.request.contextPath}/icons/next.svg"
-							alt="next">
-					</button>
-			</a></li>
+			<c:forEach begin = "1" end="${endP}" var = "i">
+				<li>
+					<% 
+						if (search == null){%>
+							<a href="${pageContext.request.contextPath}/viewContentServlet?page=${i}&sort=${sort}&sortType=${sortType}">
+									<button>${i}</button>
+							</a>
+						<%} else { %>
+							<a href="${pageContext.request.contextPath}/searchServlet?page=${i}&sort=${sort}&sortType=${sortType}&s=${search}">
+								<button>${i}</button>
+							</a>
+						<%} %>
+				</li>
+			</c:forEach>		
 		</ul>
 	</div>
 

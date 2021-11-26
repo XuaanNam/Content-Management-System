@@ -19,7 +19,9 @@
 				type="text" placeholder="Enter the title"
 				value="${contentResult.title}" id="input-title" name="title" /> <br />
 			<br /> <label>Brief</label> <br />
-			<textarea name="brief" id="input-brief" style="text-align:left; " rows="6" cols="150">  
+			
+			
+			<textarea name="brief" id="input-brief" rows="6" cols="150">  
  					${contentResult.brief}
 				</textarea>
 			<br /> <br /> <label>Content</label> <br />

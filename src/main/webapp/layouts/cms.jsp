@@ -32,7 +32,7 @@
 			<!-- End Navigation -->
 
 			<!-- Begin Content -->
-			<div id="cms-content">
+			<div id="form-cms">
 				<tiles:insertAttribute name="article" />
 			</div>
 			<!-- End Content -->

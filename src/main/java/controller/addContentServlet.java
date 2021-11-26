@@ -1,38 +1,47 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.connectMySql;
+import dao.connectMySql;
 import model.beanContent;
-
 
 @WebServlet("/addContentServlet")
 public class addContentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	connectMySql conn = new connectMySql();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			int id = Integer.parseInt(request.getParameter("id"));
-			beanContent bCt = conn.editContent(id);
-			if(bCt == null) { 
-				System.out.print("Content is null!");
-			}else {
-				request.setAttribute("contentResult", bCt);
-			}
-	        request.getRequestDispatcher("addContent.tiles").forward(request, response);
-		} catch (Exception e) {
-			System.out.print("edit content servlet failed !");
-		}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		int id=3;
+		
+		LocalDateTime today = LocalDateTime.now();
+
+		String title = request.getParameter("title");
+		String brief = request.getParameter("brief");
+		String content = request.getParameter("content");
+		String createtime = today.toString();
+		beanContent newContent = new beanContent(title, brief, content, createtime, id);
+		try {
+			conn.insertContent(newContent);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		response.sendRedirect(request.getContextPath() + "/viewContentServlet");
+
 	}
 
 }

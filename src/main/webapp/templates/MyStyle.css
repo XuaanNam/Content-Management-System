@@ -1,12 +1,14 @@
+/* Reset CSS */
+
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 }
 
 html {
-    font-family: Helvetica, Arial, Sans-serif;
-    overflow: hidden;
+	font-family: Helvetica, Arial, Sans-serif;
+	overflow: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -24,8 +26,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .cms-container {
-    width: 100%;
-    float: left;
+	width: 100%;
+	float: left;
 }
 
 /* Begin Header Name */
@@ -53,7 +55,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 /* End Header Name */
-
 
 /* Profile button */
 
@@ -114,6 +115,8 @@ body::-webkit-scrollbar-thumb {
 
 
 /* End Profile Button */
+
+
 
 /* Begin Navigation */
 
@@ -210,7 +213,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 /* End Navigation */
-#cms-content {
+
+#form-cms {
     background-color: #fff;
     position: absolute;
     left: 300px;
@@ -219,13 +223,7 @@ body::-webkit-scrollbar-thumb {
     padding: 0 30px;
 }
 
-#cms-content .content-heading-section {
-    margin-top: 45px;
-    border-bottom: 1px solid #ccc;
-}
-
 /*ViewContent=======================================================XuanNam=============================================*/
-
 .font-helvetica {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-style: normal;
@@ -233,6 +231,7 @@ body::-webkit-scrollbar-thumb {
 	font-weight: 500;
 	line-height: 23px;
 }
+
 .flex {
 	display: flex;
 }
@@ -258,7 +257,8 @@ table {
 	vertical-align: middle;
 	border-collapse: collapse;
 }
-#cms-content .section-title {
+
+#form-cms .section-title {
 	width: auto;
 	height: 12%;
 	color: rgb(59, 59, 59);
@@ -284,7 +284,7 @@ table {
 	margin: 0;
 }
 
-#cms-content .section-list {
+#form-cms .section-list {
 	width: auto;
 	height: 78%;
 	display: grid;
@@ -307,28 +307,34 @@ table {
 	display: flex;
 	align-items: center;
 }
+
 .view-title h3 {
-    padding-right: 20%;
+	padding-right: 20%;
 	margin: 0;
 }
-.view-title label{
-    font-size: 1.7vh;
-    padding-right: 0.5vh;
+
+.view-title label {
+	font-size: 1.7vh;
+	padding-right: 0.5vh;
 }
-.view-title select{
-    border: 2px solid rgb(221, 219, 219);
+
+.view-title select {
+	border: 2px solid rgb(221, 219, 219);
 }
-.view-title button{
-    background: green;
-    color: #FFF;
-    padding: 0 1vw;
-    border: none;
-    border-radius: 50px;
+
+.view-title button {
+	background: green;
+	color: #FFF;
+	padding: 0 1vw;
+	border: none;
+	border-radius: 50px;
 }
-.view-title button:hover{
-    color: black;
-    background: cornsilk;
+
+.view-title button:hover {
+	color: black;
+	background: cornsilk;
 }
+
 .section-list .view-table {
 	width: 100%;
 	height: 100%;
@@ -348,17 +354,17 @@ table {
 }
 
 .section-list .view-table::-webkit-scrollbar-thumb {
-    background-color: rgba(50, 53, 245, 0.863);
-    outline: 1px solid rgb(142, 131, 236);
-    border-radius: 50px;
+	background-color: rgba(50, 53, 245, 0.863);
+	outline: 1px solid rgb(142, 131, 236);
+	border-radius: 50px;
 }
 
 .view-table button {
 	width: 100%;
 	height: 100%;
 	font-size: 2vh;
-	color:#FFF;
-	background: green;
+	color: #FFF;
+	background: rgb(100, 180, 100);
 	box-sizing: border-box;
 	padding: 0.5vh 1vw;
 	border-radius: 15px;
@@ -375,17 +381,17 @@ table {
 	height: 100%;
 	background: rgb(238, 238, 238);
 	box-sizing: border-box;
-	padding: 0.5vh 30%;
-	border-top: 2px solid rgb(221, 219, 219);;
+	padding: 0.5vh 10%;
+	border-top: 2px solid rgb(221, 219, 219);
+	
 }
 
 .view-page-number ul {
-	width: 100%;
 	height: 100%;
 	display: flex;
 	list-style-type: none;
 	padding: 0;
-	margin: 0;
+	margin: auto;
 }
 
 .view-page-number li {
@@ -399,8 +405,8 @@ table {
 	width: 100%;
 	height: 100%;
 	font-weight: 700;
-	color:#FFF;
-	background: green;
+	color: #FFF;
+	background: rgb(100, 180, 100);
 	border-radius: 15px;
 	border: none;
 }
@@ -411,105 +417,221 @@ table {
 }
 
 .view-page-number button:hover {
-	background:  cornsilk;
+	background: cornsilk;
 	color: black;
 }
-.input-brief, .input-content{
-	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
-}
 /*=============================================Login==========================================QuocAnh*/
-#login-form{
-    width: 40vw;
-    height: 51vh;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20vh;
-    font-family: tahoma;
-    border: 2px solid rgb(222, 222, 222);
-    border-radius: 7px;
-    color: rgb(65, 64, 64);
+#login-form {
+	width: 40vw;
+	height: 51vh;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20vh;
+	font-family: tahoma;
+	border: 2px solid rgb(222, 222, 222);
+	border-radius: 7px;
+	color: rgb(65, 64, 64);
 }
-.container{
-    padding: 2.5vh 2.5vw;
+
+.container {
+	padding: 2.5vh 2.5vw;
 }
-.form-title{
-    border-bottom: 2px solid rgb(222, 222, 222);
-    margin: -2.5vh -2.5vw 2.5vh -2.5vw;
-    padding: 1.5vh 0 2vh 2.5vw;
-    background-color: rgb(240, 240, 240) ;
+
+.form-title {
+	border-bottom: 2px solid rgb(222, 222, 222);
+	margin: -2.5vh -2.5vw 2.5vh -2.5vw;
+	padding: 1.5vh 0 2vh 2.5vw;
+	background-color: rgb(240, 240, 240);
 }
-.group{
-    margin-bottom: 3vh;
-    position: relative;
+
+.group {
+	margin-bottom: 3vh;
+	position: relative;
 }
-.textbox{
-    height: 5vh;
-    width: 34.5vw;
-    border: 1.5px solid;
-    border-radius: 7px;
-    font-size: 16px;
-    border-color: rgb(222, 222, 222);
+
+.textbox {
+	height: 5vh;
+	width: 34.5vw;
+	border: 1.5px solid;
+	border-radius: 7px;
+	font-size: 16px;
+	border-color: rgb(222, 222, 222);
 }
-.checkbox{
-    margin-left: 0px;
+
+.checkbox {
+	margin-left: 0px;
 }
-#btn-login{
-    color: white;
-    font-size: 16px;
-    background-color: rgb(100, 180, 100);
-    border: 0px;
-    height: 7vh;
-    width: 35.2vw;
-    border-radius: 7px;
-    padding: 1px 2px 1px 2px;
-    font-weight: bold;
+
+#btn-login {
+	color: white;
+	font-size: 16px;
+	background-color: rgb(100, 180, 100);
+	border: 0px;
+	height: 7vh;
+	width: 35.2vw;
+	border-radius: 7px;
+	padding: 1px 2px 1px 2px;
+	font-weight: bold;
 }
-.mess{
+
+.mess {
 	height: 3vh;
 	color: red;
 	margin-top: 1vh;
 }
+
 .link {
-   	margin-top: 1vh;
-}
-.link a{
-	color: cornflowerblue;
-}
-.group .temp{
-    position: absolute;
-    top: 20%;
-    right: 4%;
-    display: none;
-}
-.temp-tick{
-    color: green;
-}
-.temp-error{
-    color: red;
-}
-/*--=====================================register--=========================================>*/
-#register-form{
-    width: 40vw;
-    height: 63vh;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20vh;
-    font-family: tahoma;
-    border: 2px solid rgb(222, 222, 222);
-    border-radius: 7px;
-    color: rgb(65, 64, 64);
+	margin-top: 1vh;
 }
 
-#btn-register{
-    color: white;
-    font-size: 16px;
+.link a {
+	color: cornflowerblue;
+}
+
+.group .temp {
+	position: absolute;
+	top: 20%;
+	right: 4%;
+	display: none;
+}
+
+.temp-tick {
+	color: green;
+}
+
+.temp-error {
+	color: red;
+}
+/*--=====================================register--=========================================>*/
+#register-form {
+	width: 40vw;
+	height: 63vh;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20vh;
+	font-family: tahoma;
+	border: 2px solid rgb(222, 222, 222);
+	border-radius: 7px;
+	color: rgb(65, 64, 64);
+}
+
+#btn-register {
+	color: white;
+	font-size: 16px;
+	background-color: rgb(100, 180, 100);
+	border: 0px;
+	height: 7vh;
+	width: 35.2vw;
+	border-radius: 7px;
+	padding: 1px 2px 1px 2px;
+	font-weight: bold;
+}
+
+/*--------------------------------------------------------- Ä�Ã¬nh Ä�áº¡i ---------------------------------------------------------*/
+/*<---------------------------------------------------------ADD CONTENT-------------------------------------------------------->*/
+/*<---------------------------------------------------------EDIT PROFILE--------------------------------------------------------->*/
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-content-section {
+    margin-top: 40px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.form-tittle {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.body-content-section {
+    margin-top: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-heading-name {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    font-size: 15px;
+    border-radius: 4px;
+    font-weight: 100;
+    padding: 10px 10px 10px 15px;
+}
+
+.form-container {
+    padding-left: 15px;
+}
+
+.heading-name {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 15px;
+}
+.input-box-section {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 10px;
+    margin-right: 275px;
+    outline: none;
+    resize: vertical;
+}
+
+.input-box-section:hover {
+    border-color: #1dbfaf;
+}
+
+.email-section {
+    color: #808080;
+}
+
+.form-group.invalid .input-box-section {
+    border-color: #f33a58;
+}
+
+.form-group.invalid .form-message {
+    font-size: 12px;
+    color: #f33a58;
+    font-family: Helvetica, Arial, Sans-serif;
+}
+
+.form-message {
+    font-size: 10px;
+    font-family: Helvetica, Arial, Sans-serif;
+    padding: 4px 0 0;
+    text-align: left;
+}
+
+
+.email-section {
+    user-select: none;
+    border: none;
+    outline: none;
+}
+
+.form-btn {
+    display: flex;
+    margin: 15px 0;
+}
+
+.submit-section {
+    margin-right: 5px;
+}
+
+.btn-section {
+    outline: none;
+    border-radius: 4px;
+    padding: 10px 15px;
     background-color: rgb(100, 180, 100);
-    border: 0px;
-    height: 7vh;
-    width: 35.2vw;
-    border-radius: 7px;
-    padding: 1px 2px 1px 2px;
-    font-weight: bold;
+    color: #000000;
+    border: none;
+}
+
+.btn-section:hover {
+    cursor: pointer;
+    color: #ccc;
 }

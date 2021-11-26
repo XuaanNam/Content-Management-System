@@ -11,17 +11,6 @@
 <section class="section-list">
 	<div class="view-title">
 		<h3 class="font-helvetica">Trash Bin List</h3>
-		<form
-			action="${pageContext.request.contextPath}/viewTrashBinServlet?sort=sort"
-			method="get">
-			<label>Sort by </label> <select name="sort" id="sort-by">
-				<option value="CreateDate">Created Date</option>
-				<option value="Title">Title</option>
-				<option value="Brief">Brief</option>
-			</select>
-			<button type="submit" name="sortType" value="asc">ascending</button>
-			<button type="submit" name="sortType" value="desc">decrease</button>
-		</form>
 	</div>
 	<div class="view-table">
 		<table>
@@ -61,42 +50,7 @@
 		</table>
 	</div>
 	<div class="view-page-number">
-		<ul>
-			<li><a href="#">
-					<button>
-						<img src="${pageContext.request.contextPath}/icons/previous.svg"
-							alt="previous">
-					</button>
-			</a></li>
-			<li><a href="#">
-					<button>1</button>
-			</a></li>
-			<li><a href="#">
-					<button>2</button>
-			</a></li>
-			<li><a href="#">
-					<button>3</button>
-			</a></li>
-			<li><a href="#">
-					<button>4</button>
-			</a></li>
-			<li>. . . .</li>
-			<li><a href="#">
-					<button>5</button>
-			</a></li>
-			<li><a href="#">
-					<button>6</button>
-			</a></li>
-			<li><a href="#">
-					<button>7</button>
-			</a></li>
-			<li><a href="#">
-					<button>
-						<img src="${pageContext.request.contextPath}/icons/next.svg"
-							alt="next">
-					</button>
-			</a></li>
-		</ul>
+		
 	</div>
 
 </section>

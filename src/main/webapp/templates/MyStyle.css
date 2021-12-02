@@ -392,10 +392,11 @@ table {
 	list-style-type: none;
 	padding: 0;
 	margin: auto;
+	justify-content: center;
 }
 
 .view-page-number li {
-	width: 10%;
+	width: 6%;
 	height: 100%;
 	box-sizing: border-box;
 	padding: 0.5vh 0.5vw;
@@ -406,8 +407,9 @@ table {
 	height: 100%;
 	font-weight: 700;
 	color: #FFF;
+	/*background: rgb(45, 190, 45);*/
 	background: rgb(45, 190, 45);
-	border-radius: 15px;
+	border-radius: 8px;
 	border: none;
 }
 
@@ -616,6 +618,7 @@ table {
     margin-right: 275px;
     outline: none;
     resize: vertical;
+    font-family: Helvetica, Arial, Sans-serif;
 }
 
 .input-box-section:hover {
@@ -624,6 +627,10 @@ table {
 
 .email-section {
     color: #808080;
+    user-select: none;
+    border: none;
+    outline: none;
+    font-size: 14px;
 }
 
 .form-group.invalid .input-box-section {
@@ -641,13 +648,6 @@ table {
     font-family: Helvetica, Arial, Sans-serif;
     padding: 4px 0 0;
     text-align: left;
-}
-
-
-.email-section {
-    user-select: none;
-    border: none;
-    outline: none;
 }
 
 .form-btn {

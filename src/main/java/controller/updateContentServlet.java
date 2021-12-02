@@ -23,6 +23,9 @@ public class updateContentServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setContentType("txt/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+		
 		LocalDateTime today = LocalDateTime.now();		
 		int id = Integer.parseInt(request.getParameter("id"));
 		String title = request.getParameter("title");

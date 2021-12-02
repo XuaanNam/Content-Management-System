@@ -18,7 +18,7 @@ email.addEventListener('blur', function(){
     var e_tick = document.querySelector('.e_tick');
     var e_error = document.querySelector('.e_error');
     var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if(regex.test(email.value) && email.value.length >=5){
+    if(regex.test(email.value) && email.value.length >=15){
         email.style.border = "1.5px solid green";
         e_error.style.display = 'none';
         e_tick.style.display = 'block';
@@ -74,7 +74,7 @@ function validate(){
         document.querySelector('.mess').innerHTML = 'Username must be at least 3 characters';
 		return false;
 	}
-	else if(email.value.length < 5){
+	else if(email.value.length < 15){
         document.querySelector('.mess').innerHTML = 'Email must be at least 5 characters';
 		return false;
 	}

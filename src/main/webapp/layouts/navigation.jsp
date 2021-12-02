@@ -2,7 +2,7 @@
 	<div class="search-container">
 		<form action="${pageContext.request.contextPath}/searchServlet"
 			method="post">
-			<input type="text" name="txtsearch" placeholder="Search..." required
+			<input type="text" name="txtsearch" placeholder="Search..." required value="${txts}"
 				id="" class="search-input">
 			<button class="search-btn">
 				<i class="search-icon fas fa-search"></i>

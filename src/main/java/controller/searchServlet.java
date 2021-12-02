@@ -19,6 +19,8 @@ public class searchServlet extends HttpServlet {
 	ConnectMySql conn = new ConnectMySql();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Account.userId; //id se dc lay tu session cua phan login
+		response.setContentType("txt/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
 		String search = request.getParameter("txtsearch");
 		if(search == null) {
 			search = request.getParameter("s");
@@ -53,9 +55,11 @@ public class searchServlet extends HttpServlet {
 			request.setAttribute("sort", sort);
 			request.setAttribute("sortType", sortType);
 			request.setAttribute("search", search);
-			
+			request.setAttribute("txts",search );
 			RequestDispatcher dispatcher = request.getRequestDispatcher("viewContent.tiles");
+			RequestDispatcher dispatcher1 = request.getRequestDispatcher("navigation.jsp");
 			dispatcher.forward(request, response);
+			dispatcher1.forward(request, response);
 		} catch (Exception e) {
 			
 			System.out.print("search failed !");

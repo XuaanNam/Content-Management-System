@@ -18,7 +18,7 @@ email.addEventListener('blur', function(){
     var e_tick = document.querySelector('.e_tick');
     var e_error = document.querySelector('.e_error');
     var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if(regex.test(email.value) && email.value.length >=15){
+    if(regex.test(email.value) && email.value.length >=5){
         email.style.border = "1.5px solid green";
         e_error.style.display = 'none';
         e_tick.style.display = 'block';
@@ -68,23 +68,22 @@ function validate(){
 	console.log("ok");
     if(email.value.length == 0 || uname.value.length == 0 || pass.value.length == 0 || repass.value.length == 0){
         document.querySelector('.mess').innerHTML = 'Please fill empty fields';
-        return false;
+		return false;
     }
-	else if(uname.value.length < 3){
-        document.querySelector('.mess').innerHTML = 'Username must be at least 3 characters';
+	else if(uname.value.length < 3 || uname.value.length > 30){
+        document.querySelector('.mess').innerHTML = 'Username must be between 3 & 30 characters';
 		return false;
 	}
-	else if(email.value.length < 15){
+	else if(email.value.length < 5){
         document.querySelector('.mess').innerHTML = 'Email must be at least 5 characters';
 		return false;
 	}
-	else if(pass.value.length < 8){
-        document.querySelector('.mess').innerHTML = 'Password must be at least 8 characters';
+	else if(pass.value.length < 8 || pass.value.length > 30 ){
+        document.querySelector('.mess').innerHTML = 'Password must be between 8 & 30 characters ';	
 		return false;
 	}
 	else if(pass.value != repass.value){
         document.querySelector('.mess').innerHTML = 'Incorect confirm password';
 		return false;
 	}
-    return true;
 }

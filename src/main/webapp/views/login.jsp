@@ -17,7 +17,7 @@
 		if(cookies != null){
 			for(Cookie item : cookies){
 				if(item.getName().equals("remember"))
-					request.getRequestDispatcher("/layouts/article.jsp").forward(request,response);
+					request.getRequestDispatcher("/cms.tiles").forward(request,response);
 			}
 		}
 	%>

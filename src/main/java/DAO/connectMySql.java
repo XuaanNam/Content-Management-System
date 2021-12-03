@@ -1,12 +1,17 @@
 package dao;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,7 +129,10 @@ public class ConnectMySql {
 				String getTitle = rs.getString("Title");
 				String getBrief = rs.getString("Brief");
 				String getCreatedate = rs.getString("CreateDate");
-				listContent.add(new beanContent(getId, getTitle, getBrief, getCreatedate));
+				LocalDateTime createDate = LocalDateTime.parse(getCreatedate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+				String newstringCD = createDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+				
+				listContent.add(new beanContent(getId, getTitle, getBrief, newstringCD));
 			}
 		} catch (Exception e) {
 
@@ -425,15 +433,16 @@ public class ConnectMySql {
 		}
 		return 0;
 	}
-
-	public boolean checkLogin(String email, String password) {
-		String query = "select * from member where Email='" + email + "' and Password='" + password + "'";
-		try {
+//----------------------------------------------------------
+	
+	public boolean checkLogin(String email, String password){
+		String query = "select * from member where Email='" + email + "' and Password='" + password + "'" ;	
+		try {	
 			Connection conn = getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-
-			if (rs.next()) {
+			
+			if(rs.next()) {
 				Account.userId = rs.getInt("id");
 				return true;
 			}
@@ -442,35 +451,34 @@ public class ConnectMySql {
 		}
 		return false;
 	}
-
-	public boolean checkRegister(String email, String username) {
-		String query = "SELECT * from member where Username='" + username + "' or Email='" + email + "'";
-		try {
+	public boolean checkRegister(String email, String username){
+		String query = "SELECT * from member where Username='" + username + "' or Email='" + email + "'";	
+		try {	
 			Connection conn = getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-
-			if (rs.next())
+			
+			if(rs.next()) 
 				return true;
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return false;
+		return false;  
 	}
-
 	public void insertUser(Account acc) {
-		String query = "insert into member(Username, Email, Password,CreateDate,role) values (?,?,?,NOW(),0)";
-		try {
-			Connection conn = getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, acc.getUsername());
-			pstmt.setString(2, acc.getEmail());
-			pstmt.setString(3, acc.getPassword());
-			pstmt.executeUpdate();
-		} catch (Exception e) {
-			System.out.print("insert failed");
-		}
+			String query = "insert into member(Username, Email, Password,CreateDate,role) values (?,?,?,NOW(),0)";
+			try {
+				Connection conn = getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, acc.getUsername());
+				pstmt.setString(2, acc.getEmail());
+				pstmt.setString(3, acc.getPassword());
+				
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				System.out.print("insert failed");
+			}
 	}
 
 //  SELECT MEMBER BY ID

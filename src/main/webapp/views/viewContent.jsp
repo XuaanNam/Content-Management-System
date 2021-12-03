@@ -37,9 +37,9 @@
 			<thead>
 				<tr>
 					<th style="width: 2%;">#</th>
-					<th style="width: 23%;">Title</th>
+					<th style="width: 28%;">Title</th>
 					<th style="width: 40%;">Brief</th>
-					<th style="width: 20%;">Created Date</th>
+					<th style="width: 15%;">Created Date</th>
 					<th style="width: 15%; text-align: center;">Action</th>
 				</tr>
 			</thead>

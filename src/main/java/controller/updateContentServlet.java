@@ -35,8 +35,7 @@ public class updateContentServlet extends HttpServlet {
 		beanContent bCt = new beanContent(id, title, brief, content, updatetime);
 		try {
 			conn.updateContent(bCt);
-			request.setAttribute("contentResult", bCt);
-			request.getRequestDispatcher("editContent.tiles").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/viewContentServlet");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

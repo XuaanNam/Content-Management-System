@@ -22,7 +22,7 @@
                 <span class="temp temp-error u_error">&#10006;</span>    
             </div>
             <div class="group">
-                <input class="textbox" id="email" type="text" placeholder="E-mail" name="email"> <br>
+                <input class="textbox" id="email" type="email" placeholder="E-mail" name="email"> <br>
                 <span class="temp temp-tick e_tick">&#10004;</span>
                 <span class="temp temp-error e_error">&#10006;</span>   
             </div>

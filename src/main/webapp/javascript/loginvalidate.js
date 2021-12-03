@@ -3,7 +3,7 @@ email.addEventListener('blur', function(){
     var e_tick = document.querySelector('.e_tick');
     var e_error = document.querySelector('.e_error');
     var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if(regex.test(email.value) && email.value.length >=15){
+    if(regex.test(email.value) && email.value.length >=5){
         email.style.border = "1.5px solid green";
         e_error.style.display = 'none';
         e_tick.style.display = 'block';
@@ -33,7 +33,8 @@ pass.addEventListener('blur', function(){
 
 function validate(){
     if(email.value.length == 0 || pass.value.length == 0){
-        document.querySelector('.mess').innerHTML = 'Email or password is invalid';
+        document.querySelector('.mess').innerHTML = 'Please fill empty fields';
+	
         return false;
     }
     else{

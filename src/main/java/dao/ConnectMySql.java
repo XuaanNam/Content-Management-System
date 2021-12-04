@@ -308,7 +308,7 @@ public class ConnectMySql {
 		// return updateContent;
 	}
 
-	public List<beanContent> trashBinContentWithId(int id, String sort, String sortType) {
+	public List<beanContent> trashBinContentWithId(int id) {
 		String query = "";
 		boolean rl = false;
 		try {
@@ -316,54 +316,13 @@ public class ConnectMySql {
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		switch (sort) {
-		case "Title":
-			if (sortType.equals("asc")) {
-				if (rl) {
-					query = "select  id, Title, Brief, CreateDate from Content where Draft = true order by Title";
-				} else {
-					query = "select id, Title, Brief, CreateDate from Content where Draft = true and AuthorId = ? order by Title";
-				}
-			} else if (sortType.equals("desc")) {
-				if (rl) {
-					query = "select  id, Title, Brief, CreateDate from Content where Draft = true order by Title desc";
-				} else {
-					query = "select id, Title, Brief, CreateDate from Content where Draft = true and AuthorId = ? order by Title desc";
-				}
-			}
-			break;
-		case "Brief":
-			if (sortType.equals("asc")) {
-				if (rl) {
-					query = "select  id, Title, Brief, CreateDate from Content where Draft = true order by Brief";
-				} else {
-					query = "select id, Title, Brief, CreateDate from Content where Draft = true and AuthorId = ? order by Brief";
-				}
-			} else if (sortType.equals("desc")) {
-				if (rl) {
-					query = "select  id, Title, Brief, CreateDate from Content where Draft = true order by Brief desc";
-				} else {
-					query = "select id, Title, Brief, CreateDate from Content where Draft = true and AuthorId = ? order by Brief desc";
-				}
-			}
-			break;
-		case "CreateDate":
-			if (sortType.equals("asc")) {
-				if (rl) {
-					query = "select  id, Title, Brief, CreateDate from Content where Draft = true order by CreateDate";
-				} else {
-					query = "select id, Title, Brief, CreateDate from Content where Draft = true and AuthorId = ?  order by CreateDate";
-				}
-			} else if (sortType.equals("desc")) {
-				if (rl) {
-					query = "select  id, Title, Brief, CreateDate from Content where Draft = true order by CreateDate desc";
-				} else {
-					query = "select id, Title, Brief, CreateDate from Content where Draft = true and AuthorId = ? order by CreateDate desc";
-				}
-			}
-		default:
-
-		}
+		
+		if (rl) {
+			query = "select  id, Title, Brief, CreateDate from Content where Draft = true ";
+		} else {
+			query = "select id, Title, Brief, CreateDate from Content where Draft = true and AuthorId = ? ";
+		}		
+	
 		List<beanContent> listContent = new ArrayList<>();
 		try (Connection conn = getConnection(); PreparedStatement pstmt = conn.prepareStatement(query);) {
 			if (rl == false) {
@@ -529,7 +488,7 @@ public class ConnectMySql {
   }
 
 // UPDATE PROFILE
-  public static boolean updateProfile(String firstName, String lastName, String phone, String description) throws SQLException {
+  public boolean updateProfile(String firstName, String lastName, String phone, String description) throws SQLException {
 	  String UPDATE_USERS_SQL = "update member set Firstname = ?, Lastname = ?, Phone = ?, Description = ? where id = ?";   
 	  boolean tableUpdated = false;
       try (Connection connection = getConnection(); PreparedStatement pstmt = connection.prepareStatement(UPDATE_USERS_SQL);) {
@@ -540,7 +499,7 @@ public class ConnectMySql {
           pstmt.setInt(5, Account.userId);
 
           tableUpdated = pstmt.executeUpdate() > 0;
-          pstmt.close();
+          
       
       } catch (SQLException e) {
     	  System.out.print("UPDATE FAILED");

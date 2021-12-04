@@ -49,8 +49,7 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="view-page-number">
-		
+	<div class="view-page-number">		
 	</div>
 
 </section>

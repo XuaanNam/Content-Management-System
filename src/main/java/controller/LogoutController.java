@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.CookieUnit;
+import model.Account;
 
 @WebServlet("/logout")
 public class LogoutController extends HttpServlet {
@@ -20,6 +21,7 @@ public class LogoutController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CookieUnit.eraseCookie(request,response);
+		Account.userId = -1;
 		response.sendRedirect(request.getContextPath() + "/views/login.jsp");
 	}
 	

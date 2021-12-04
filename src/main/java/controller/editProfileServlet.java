@@ -33,7 +33,7 @@ public class editProfileServlet extends HttpServlet {
         String description = request.getParameter("description");
 
         try {
-            if (ConnectMySql.updateProfile(firstName, lastName, phone, description) == true) {
+            if (conn.updateProfile(firstName, lastName, phone, description) == true) {
                 RequestDispatcher dispatch = request.getRequestDispatcher("editProfile.tiles");
                 dispatch.forward(request, response);
             } 

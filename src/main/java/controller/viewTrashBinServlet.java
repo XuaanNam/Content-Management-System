@@ -19,22 +19,11 @@ public class viewTrashBinServlet extends HttpServlet {
 	ConnectMySql conn = new ConnectMySql();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String sort = request.getParameter("sort");
-		String sortType = request.getParameter("sortType");
-		if(sort == null) {
-			sort = "CreateDate";
-		} else if((!sort.equals("CreateDate")) && (!sort.equals("Title")) && (!sort.equals("Brief"))) {
-			sort = "CreateDate";
-		} 
-		if(sortType == null) {
-			sortType = "desc";
-		} else if((!sortType.equals("asc")) && (!sortType.equals("desc"))) {
-			sortType = "desc";
-		} 
+		
 		try {
-			int id = Account.userId; //id se dc lay tu session cua phan login
+			int id = Account.userId; 
 			
-			List<beanContent> listContent = conn.trashBinContentWithId(id, sort, sortType);
+			List<beanContent> listContent = conn.trashBinContentWithId(id);
 			if(listContent == null) { 
 				System.out.print("listContent is null!");
 			}else {

@@ -18,12 +18,10 @@ public class viewContentServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int id = Account.userId; //id se dc lay tu session cua phan login	
+		int id = Account.userId;	
 		if ( id == -1 ) {
 			response.sendRedirect(request.getContextPath() + "/views/login.jsp");
 		}
-		
-		
 		
 		String sort = request.getParameter("sort");
 		String sortType = request.getParameter("sortType");

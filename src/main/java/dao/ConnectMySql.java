@@ -375,7 +375,10 @@ public class ConnectMySql {
 				String getTitle = rs.getString("Title");
 				String getBrief = rs.getString("Brief");
 				String getCreatedate = rs.getString("CreateDate");
-				listContent.add(new beanContent(getId, getTitle, getBrief, getCreatedate));
+				LocalDateTime createDate = LocalDateTime.parse(getCreatedate, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+				String newstringCD = createDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+				
+				listContent.add(new beanContent(getId, getTitle, getBrief, newstringCD));
 			}
 		} catch (Exception e) {
 
